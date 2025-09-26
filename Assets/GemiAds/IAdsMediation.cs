@@ -12,6 +12,13 @@ namespace Gemi.AdsManager
         void SetConsent(ConsentStatus status);
         void SetUserId(string userId);
 
+        #region Banner
+        void LoadBanner();
+        void ShowBanner(string placement);
+        void HideBanner(string placement);
+        void DestroyBanner(string placement);
+        #endregion
+
         // Loading
         bool IsLoaded(string placement);
         void Load(string placement);
@@ -19,10 +26,6 @@ namespace Gemi.AdsManager
         // Showing
         void Show(string placement, Action<AdResult> onClosed);
 
-        // Banners (kept simple)
-        void ShowBanner(string placement);
-        void HideBanner(string placement);
-        void DestroyBanner(string placement);
 
         // Optional: revenue callback (eCPM, currency micros, etc.)
         event Action<string /*placement*/, double /*value*/, string /*currency*/> OnPaidEvent;
