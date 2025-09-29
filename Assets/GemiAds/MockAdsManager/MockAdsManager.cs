@@ -6,7 +6,7 @@ using System.Collections;
 
 public class MockAdsManager : MonoBehaviour, IAdsMediation
 {
-    [SerializeField] private RectTransform _banner;
+    [SerializeField] private GameObject _banner;
 
     public string ProviderId => throw new NotImplementedException();
 
@@ -21,6 +21,39 @@ public class MockAdsManager : MonoBehaviour, IAdsMediation
         onInitialized?.Invoke(true);
     }
 
+    #region General
+    public void SetConsent(ConsentStatus status)
+    {
+        // Mock implementation, do nothing
+    }
+
+    public void SetUserId(string userId)
+    {
+        // Mock implementation, do nothing
+    }
+
+    public bool IsAdLoaded(AdType adType)
+    {
+        if (_adsCollected.TryGetValue(adType, out AdInfo adInfo))
+        {
+            return adInfo.adStatus == AdStatus.Loaded;
+        }
+        return false;
+    }
+    
+    public bool IsAdShowing(AdType adType)
+    {
+        if (_adsCollected.TryGetValue(adType, out AdInfo adInfo))
+        {
+            return adInfo.adStatus == AdStatus.Showing;
+        }
+        return false;
+    }
+
+
+
+    #endregion
+
     #region Banner
     public void LoadBanner()
     {
@@ -33,19 +66,57 @@ public class MockAdsManager : MonoBehaviour, IAdsMediation
             retryAttempt = 0,
             adObject = _banner
         };
+
+        _adsCollected.Add(AdType.Banner, bannerInfo);
     }
 
-    #endregion
-
-    public void DestroyBanner(string placement)
+    public void ShowBanner(string placement)
     {
-        throw new NotImplementedException();
+        if (_adsCollected.TryGetValue(AdType.Banner, out AdInfo adInfo))
+        {
+            if (adInfo is BannerInfo bannerInfo && bannerInfo.adObject != null)
+            {
+                bannerInfo.adStatus = AdStatus.Showing;
+                (bannerInfo.adObject as GameObject).SetActive(true);
+            }
+        }
     }
 
     public void HideBanner(string placement)
     {
-        throw new NotImplementedException();
+        if (_adsCollected.TryGetValue(AdType.Banner, out AdInfo adInfo))
+        {
+            if (adInfo is BannerInfo bannerInfo && bannerInfo.adObject != null)
+            {
+                bannerInfo.adStatus = AdStatus.Hide;
+                (bannerInfo.adObject as GameObject).SetActive(false);
+            }
+        }
     }
+
+    public void DestroyBanner(string placement)
+    {
+        if (_adsCollected.TryGetValue(AdType.Banner, out AdInfo adInfo))
+        {
+            if (adInfo is BannerInfo bannerInfo && bannerInfo.adObject != null)
+            {
+                bannerInfo.adStatus = AdStatus.NotSet;
+                (bannerInfo.adObject as GameObject).SetActive(false);
+                _adsCollected.Remove(AdType.Banner);
+            }
+        }
+    }
+
+    public bool IsBannerLoaded()
+    {
+        return IsAdLoaded(AdType.Banner);
+    }
+
+    public bool IsBannerShowing()
+    {
+        return IsAdShowing(AdType.Banner);
+    }
+    #endregion
 
     public bool IsLoaded(string placement)
     {
@@ -57,22 +128,7 @@ public class MockAdsManager : MonoBehaviour, IAdsMediation
         throw new NotImplementedException();
     }
 
-    public void SetConsent(ConsentStatus status)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SetUserId(string userId)
-    {
-        throw new NotImplementedException();
-    }
-
     public void Show(string placement, Action<AdResult> onClosed)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void ShowBanner(string placement)
     {
         throw new NotImplementedException();
     }

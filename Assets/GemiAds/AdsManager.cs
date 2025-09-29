@@ -5,7 +5,7 @@ namespace Gemi.AdsManager
 {
     public enum AdType { NotSet, Banner, Interstitial, Rewarded, OpenAd }
     public enum AdNetwork { NotSet, AdMob, UnityAds, AppLovin, IronSource }
-    public enum AdStatus { NotSet, Loading, Loaded, Failed, Showing, Completed }
+    public enum AdStatus { NotSet, Loading, Loaded, Failed, Showing, Hide, Completed }
     public enum AdResult { Completed, Skipped, Failed }
     public enum ConsentStatus { Unknown, Granted, Denied }
     public enum BannerPosition { Top, Bottom }
