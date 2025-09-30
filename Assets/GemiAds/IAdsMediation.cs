@@ -17,14 +17,11 @@ namespace Gemi.AdsManager
         void ShowBanner(string placement);
         void HideBanner(string placement);
         void DestroyBanner(string placement);
+        bool IsBannerLoaded();
+        bool IsBannerShowing();
         #endregion
 
-        // Loading
-        bool IsLoaded(string placement);
-        void Load(string placement);
 
-        // Showing
-        void Show(string placement, Action<AdResult> onClosed);
 
 
         // Optional: revenue callback (eCPM, currency micros, etc.)

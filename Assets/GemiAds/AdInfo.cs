@@ -16,6 +16,7 @@ namespace Gemi.AdsManager
     {
         public BannerPosition position = BannerPosition.Bottom;
         public bool collapse = false;
+        public bool adaptive = false;
     }
 
     public class InterstitialInfo : AdInfo

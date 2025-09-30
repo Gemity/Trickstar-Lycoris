@@ -49,9 +49,6 @@ public class MockAdsManager : MonoBehaviour, IAdsMediation
         }
         return false;
     }
-
-
-
     #endregion
 
     #region Banner
@@ -117,19 +114,4 @@ public class MockAdsManager : MonoBehaviour, IAdsMediation
         return IsAdShowing(AdType.Banner);
     }
     #endregion
-
-    public bool IsLoaded(string placement)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Load(string placement)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Show(string placement, Action<AdResult> onClosed)
-    {
-        throw new NotImplementedException();
-    }
 }
