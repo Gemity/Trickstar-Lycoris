@@ -4,16 +4,12 @@ namespace Gemi.AdsManager
 {
     public interface IAdsMediation
     {
-        // Adapter identity
-        string ProviderId { get; }
-
-        // Lifecycle
         void Initialize(Action<bool> onInitialized);
         void SetConsent(ConsentStatus status);
         void SetUserId(string userId);
 
         #region Banner
-        void LoadBanner();
+        void LoadBanner(string placement, BannerPosition position = BannerPosition.Bottom, BannerSize size = BannerSize.FullBanner, bool adaptive = true );
         void ShowBanner(string placement);
         void HideBanner(string placement);
         void DestroyBanner(string placement);

@@ -14,6 +14,7 @@ namespace Gemi.AdsManager
 
     public class BannerInfo : AdInfo
     {
+        public BannerSize size = BannerSize.Banner;
         public BannerPosition position = BannerPosition.Bottom;
         public bool collapse = false;
         public bool adaptive = false;

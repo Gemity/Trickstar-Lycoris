@@ -8,8 +8,6 @@ public class MockAdsManager : MonoBehaviour, IAdsMediation
 {
     [SerializeField] private GameObject _banner;
 
-    public string ProviderId => throw new NotImplementedException();
-
     public event Action<string, double, string> OnPaidEvent;
     public event Action<string, string> OnLoadFailed;
     public event Action<string, string> OnShowFailed;
@@ -52,7 +50,7 @@ public class MockAdsManager : MonoBehaviour, IAdsMediation
     #endregion
 
     #region Banner
-    public void LoadBanner()
+    public void LoadBanner(string placement, BannerPosition position = BannerPosition.Bottom, BannerSize size = BannerSize.FullBanner, bool adaptive = true, bool collapse = false )
     {
         BannerInfo bannerInfo = new ()
         {
@@ -61,7 +59,11 @@ public class MockAdsManager : MonoBehaviour, IAdsMediation
             adUnitId = "mock-banner",
             adStatus = AdStatus.Loading,
             retryAttempt = 0,
-            adObject = _banner
+            adObject = _banner,
+            adaptive = adaptive,
+            collapse = collapse,
+            position = position,
+            size = size
         };
 
         _adsCollected.Add(AdType.Banner, bannerInfo);
