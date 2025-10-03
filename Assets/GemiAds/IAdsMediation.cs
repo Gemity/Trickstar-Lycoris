@@ -9,7 +9,7 @@ namespace Gemi.AdsManager
         void SetUserId(string userId);
 
         #region Banner
-        void LoadBanner(string placement, BannerPosition position = BannerPosition.Bottom, BannerSize size = BannerSize.FullBanner, bool adaptive = true );
+        void LoadBanner(string placement, BannerPosition position = BannerPosition.Bottom, BannerSize size = BannerSize.FullBanner, bool adaptive = true, bool collapse = false);
         void ShowBanner(string placement);
         void HideBanner(string placement);
         void DestroyBanner(string placement);

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Gemi.AdsManager
@@ -10,6 +11,10 @@ namespace Gemi.AdsManager
         public AdStatus adStatus = AdStatus.NotSet;
         public int retryAttempt = 0;
         public object adObject = null; // Placeholder for actual ad object from SDK
+
+        public DateTime loadTime;
+        public DateTime showTime;
+
     }
 
     public class BannerInfo : AdInfo
