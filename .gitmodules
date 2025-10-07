@@ -1,0 +1,3 @@
+[submodule "JacatAdsManager"]
+	path = JacatAdsManager
+	url = https://gitlab.volio.vn/jacat-tech/JacatAdsManager.git
